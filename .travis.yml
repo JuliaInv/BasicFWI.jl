@@ -16,7 +16,7 @@ before_install:
    - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 
 script:
-  - julia --check-bounds=yes -e 'Pkg.clone(pwd()); Pkg.build("FWI"); Pkg.test("FWI"; coverage=true)'
+  - julia --check-bounds=yes -e 'Pkg.clone(pwd()); Pkg.build("BasicFWI"); Pkg.test("BasicFWI"; coverage=true)'
 
 after_success:
-  - julia -e 'cd(Pkg.dir("FWI")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+  - julia -e 'cd(Pkg.dir("BasicFWI")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
