@@ -1,4 +1,4 @@
-using FWI
+using BasicFWI
 using jInv.Mesh
 using jInv.Utils
 using jInv.ForwardShare
@@ -9,7 +9,7 @@ end
 
 
 @everywhere begin
-	using FWI
+	using BasicFWI
 	using jInv.Mesh
 	using jInv.Utils
 	using jInv.ForwardShare
