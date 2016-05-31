@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/JuliaInv/FWI.jl.svg?branch=master)](https://travis-ci.org/JuliaInv/BasicFWI.jl)
-[![Coverage Status](https://coveralls.io/repos/github/JuliaInv/FWI.jl/badge.svg?branch=master)](https://coveralls.io/github/JuliaInv/BasicFWI.jl?branch=master)
+[![Build Status](https://travis-ci.org/JuliaInv/BasicFWI.jl.svg?branch=master)](https://travis-ci.org/JuliaInv/BasicFWI.jl)
+[![Coverage Status](https://coveralls.io/repos/github/JuliaInv/BasicFWI.jl/badge.svg?branch=master)](https://coveralls.io/github/JuliaInv/BasicFWI.jl?branch=master)
 [![Build status](https://ci.appveyor.com/api/projects/status/regr4ahc7xrtopox?svg=true)](https://ci.appveyor.com/project/lruthotto/basicfwi-jl)
 
 
