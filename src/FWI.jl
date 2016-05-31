@@ -1,4 +1,4 @@
-module FWI
+module BasicFWI
 
 using jInv.Mesh
 using jInv.Utils
