@@ -42,7 +42,7 @@ function getFWIparam(omega,gamma,Q,P,Mesh,doDistribute=false)
     nfreq = length(omega)
     
     if doDistribute && (nfreq > 1) 
-        pFor     = Array(RemoteRef{Channel{Any}},nfreq)
+        pFor     = Array{RemoteChannel}(nfreq)
         probsMax = ceil(Integer,nfreq/nworkers()) 
         nprobs   = zeros(maximum(workers()))
         
@@ -59,7 +59,7 @@ function getFWIparam(omega,gamma,Q,P,Mesh,doDistribute=false)
                         if (idx>nfreq) 
                             break
                         end
-                        pFor[idx] = remotecall(p,getFWIparam,omega[idx],gamma,Q,P,Mesh)
+                        pFor[idx] = initRemoteChannel(getFWIparam,p,omega[idx],gamma,Q,P,Mesh)
                         nprobs[p] +=1
                         wait(pFor[idx])
                     end

@@ -63,5 +63,5 @@ pFor  = getFWIparam(omega,gamma,Q,P,Mr)
 pForp = getFWIparam(omega,gamma,Q,P,Mr,true)
 
 # inversion mesh and forward mesh are the same here
-M2Mp = prepareMesh2Mesh(pForp,Mr)
+M2Mp = ones(length(pForp))
 

@@ -19,7 +19,7 @@ function getData(m,pFor::FWIparam,doClear::Bool=false)
     U  = zeros(Complex128,prod(Mesh.n+1),nsrc,nfreq)
     
     # store factorizations
-    LU = cell(nfreq)
+    LU = Array{Any}(nfreq)
     for i=1:length(omega)
         H = getHelmholtzOperator(m,gamma,omega[i],Mesh)
         
