@@ -3,11 +3,11 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/regr4ahc7xrtopox?svg=true)](https://ci.appveyor.com/project/lruthotto/basicfwi-jl)
 
 
-# BasicFWI.jl - Basic Full Waveform Inversion in Julia.
+# BasicFWI.jl -  a lightweight basic Full Waveform Inversion in Julia.
 
 # Requirements
 
-This package is inteded to use with Julia versions 0.4.x.
+This package is inteded to use with Julia versions 0.7.
 
 This package is an add-on for [`jInv`](https://github.com/JuliaInv/jInv.jl), which needs to be installed. This is a basic FWI package, mostly used for teaching.
 
