@@ -1,7 +1,9 @@
 module BasicFWI
 using jInv.Mesh
 using jInv.Utils
-
+using Distributed
+using SparseArrays
+using LinearAlgebra
 
 export FWIparam
 import jInv.ForwardShare.ForwardProbType
@@ -21,7 +23,7 @@ import jInv.ForwardShare.ForwardProbType
 		Fields    - 
 		Ainv      - for linear solver, LU factorizations
 """
-type FWIparam <: ForwardProbType
+mutable struct FWIparam <: ForwardProbType
     omega     # frequencies
     gamma     # attenuation
     Sources   # Sources
