@@ -1,6 +1,6 @@
 include("setupFWItests.jl")
 
-using Base.Test
+using Test
 
 
 println("\tTest getData serial and parallel")
