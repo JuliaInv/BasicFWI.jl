@@ -2,49 +2,73 @@ using BasicFWI
 using jInv.Mesh
 using jInv.Utils
 using jInv.ForwardShare
+using DelimitedFiles
 
-if nworkers()==1
-	addprocs(2)
-end
+# if nworkers()==1
+	# addprocs(2)
+# end
 
 
-@everywhere begin
+
+
+
+
+println("IM here")
+#@everywhere begin
 	using BasicFWI
 	using jInv.Mesh
 	using jInv.Utils
 	using jInv.ForwardShare
-end
+#end
+
+
+
+
+
+
+
+
 
 # setup model and attenuation function
-nx = 96; nz = 48
-domain = [-1.,1,0,1]
+nx = 164; nz = 80
+domain = [0.0,10.0,0.0,4.0]
 Mr = getRegularMesh(domain,[nx,nz])
 
 # the slowness model
-m = ones(nx,nz);
-m[20:70,10:32] .= 3;
+m = 3.0*ones(nx,nz);
+m[20:70,10:32] .= 5.0; # velocity...
+m = 1.0./(m.^2); # convert to slowness squared
+
+
+# m = readdlm("SEGmodel2Dsalt.dat");
+# m = m*1e-3;
+# m = m';
+# m = 1.0./m^2
+
 
 
 # attenuation for BC
-padx = 6; padz = 6
-a    = 20;
+padx = 20; padz = 20
+a    = 2.0;
 xc = getCellCenteredGrid(Mr)
-gammaxL = a*(xc[:,1] .- xc[padx,1]).^2;
-gammaxL[padx+1:end,:] .= 0
-gammaxR = a*(xc[:,1] .- xc[end-padx+1,1]).^2
-gammaxR[1:end-padx,:] .= 0
+# gammaxL = a*(xc[:,1] .- xc[padx,1]).^2;
+# gammaxL[padx+1:end,:] .= 0
+# gammaxR = a*(xc[:,1] .- xc[end-padx+1,1]).^2
+# gammaxR[1:end-padx,:] .= 0
 
-gammax = gammaxL + gammaxR
+# gammax = gammaxL + gammaxR
 
-gammaz = a*(xc[:,2] .- xc[end-padz+1,2]).^2
-gammaz[:,1:end-padz] .= 0
+# gammaz = a*(xc[:,2] .- xc[end-padz+1,2]).^2
+# gammaz[:,1:end-padz] .= 0
 
-gamma = gammax + gammaz
+# gamma = gammax + gammaz
+
+gamma = getABL(Mr,true,[padx;padz],a);
 
 # parameters for the Helmholtz (units in km)
-h = [50.0; 50.0;]/1000
+h = Mr.h;
 n = [nx; nz;]
-omega = 2*pi*[0.2;0.5;1;1.2;1.4;1.5;2.0;3.0]
+omega = 2*pi*[1.0;1.2;1.4;1.5;2.0;3.0]
 nfreq = length(omega)
 
 # generate sources
